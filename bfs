@@ -1,0 +1,31 @@
+def bfs(graph, start_node):
+    visited = set([start_node])
+    queue = [start_node]
+    traversal_order = []
+
+    while queue:
+        current_node = queue.pop(0)
+        traversal_order.append(current_node)
+
+        for neighbour in graph[current_node]:
+            if neighbour not in visited:
+                visited.add(neighbour)
+                queue.append(neighbour)
+
+    return traversal_order
+
+
+# Graph
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+# BFS starting from A
+result = bfs(graph, 'A')
+
+print("BFS Traversal:", result)
