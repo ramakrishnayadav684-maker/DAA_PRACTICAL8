@@ -1,0 +1,30 @@
+graph = {
+  'A': ['B', 'C'],
+  'B': ['D', 'E'],
+  'C': ['F'],
+  'D': [],
+  'E': [],
+  'F': []
+}
+
+def dfs(graph, start_node):
+    visited = set()
+    stack = [start_node]
+    traversal_order = []
+
+    while stack:
+        current_node = stack.pop()  
+        
+        if current_node not in visited:
+            visited.add(current_node)
+            traversal_order.append(current_node)
+            
+         
+            for neighbour in reversed(graph[current_node]):
+                if neighbour not in visited:
+                    stack.append(neighbour)
+
+    return traversal_order
+
+result = dfs(graph, 'A')
+print("DFS:", result)
